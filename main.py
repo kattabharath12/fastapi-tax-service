@@ -274,17 +274,17 @@ Base.metadata.create_all(bind=engine)
 # PYDANTIC SCHEMAS
 # ────────────────────────────────────────────────────────────
 class TaxProfileIn(BaseModel):
-    ssn: str = Field(regex=r'^\d{3}-\d{2}-\d{4}$')
-    spouse_ssn: Optional[str] = Field(None, regex=r'^\d{3}-\d{2}-\d{4}$')
+    ssn: str = Field(pattern=r'^\d{3}-\d{2}-\d{4}$')
+    spouse_ssn: Optional[str] = Field(None, pattern=r'^\d{3}-\d{2}-\d{4}$')
     filing_status: FilingStatus
     state: str = Field(max_length=2)
     address_line1: str
     address_line2: Optional[str] = None
     city: str
-    zip_code: str = Field(regex=r'^\d{5}(-\d{4})?$')
+    zip_code: str = Field(pattern=r'^\d{5}(-\d{4})?$')
     occupation: Optional[str] = None
     spouse_occupation: Optional[str] = None
-    bank_routing: Optional[str] = Field(None, regex=r'^\d{9}$')
+    bank_routing: Optional[str] = Field(None, pattern=r'^\d{9}$')
     bank_account: Optional[str] = None
     prior_year_agi: Optional[Decimal] = None
 
